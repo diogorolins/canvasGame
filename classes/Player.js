@@ -1,4 +1,4 @@
-export default class Player {
+class Player {
   constructor(context, settings, bigHouses) {
     this.posX = settings.player.x;
     this.posY = settings.player.height; // 100;
@@ -221,3 +221,5 @@ export default class Player {
     return hit;
   }
 }
+
+export default Player;

@@ -1,4 +1,4 @@
-export default class CoffeShop {
+class CoffeShop {
   constructor(x, y, context, settings) {
     this.x = x;
     this.y = y;
@@ -24,3 +24,5 @@ export default class CoffeShop {
     );
   }
 }
+
+export default CoffeShop;

@@ -1,4 +1,4 @@
-export default class BigHouse {
+class BigHouse {
   constructor(x, y, context, settings) {
     this.x = x;
     this.y = y;
@@ -25,3 +25,5 @@ export default class BigHouse {
       );
   }
 }
+
+export default BigHouse;

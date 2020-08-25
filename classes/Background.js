@@ -1,4 +1,4 @@
-export default class Background {
+class Background {
   constructor(context, settings) {
     this.context = context;
     this.settings = settings;
@@ -21,3 +21,5 @@ export default class Background {
     );
   }
 }
+
+export default Background;
