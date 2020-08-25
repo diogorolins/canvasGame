@@ -4,7 +4,7 @@
   "description": "Treinamento no Canvas para posicionar e movimentar elementos.",
   "main": "canvas.js",
   "scripts": {
-    "start": "webpack --config webpack.config.jss",
+    "start": "webpack --config webpack.config.js",
     "build": "webpack --config webpack.config.js"
   },
   "repository": {
