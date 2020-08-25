@@ -2,13 +2,13 @@ canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
 const sprites = new Image();
-sprites.src = "./sprite.png";
+sprites.src = "./images/sprite.png";
 
 const backgroundImage = new Image();
-backgroundImage.src = "./background.png";
+backgroundImage.src = "./images/background.png";
 
 const houses = new Image();
-houses.src = "./houses.png";
+houses.src = "./images/houses.png";
 
 let bigHouses = [];
 
