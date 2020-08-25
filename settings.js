@@ -26,3 +26,5 @@ const settings = {
     width: 178,
   },
 };
+
+export { settings };

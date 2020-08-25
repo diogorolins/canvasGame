@@ -1,33 +1,34 @@
-class Player {
-  constructor() {
+export default class Player {
+  constructor(context, settings, bigHouses) {
     this.posX = settings.player.x;
     this.posY = settings.player.height; // 100;
     this.width = settings.player.size;
     this.height = settings.player.height;
     this.speed = settings.player.speed;
+    this.settings = settings;
     this.context = context;
+    this.bigHouses = bigHouses;
 
     this.moveCommands = {
-      "39": {
+      39: {
         move: "right",
         function: (keyUnpressed) => {
-          if (keyUnpressed !== 39)
-            this.moveRight(this.checkRightLimit(), frames);
+          if (keyUnpressed !== 39) this.moveRight(this.checkRightLimit());
         },
       },
-      "37": {
+      37: {
         move: "left",
         function: (keyUnpressed) => {
           if (keyUnpressed !== 37) this.moveLeft(this.checkLeftLimit());
         },
       },
-      "38": {
+      38: {
         move: "up",
         function: (keyUnpressed) => {
           if (keyUnpressed !== 38) this.moveUp(this.checkTopLimit());
         },
       },
-      "40": {
+      40: {
         move: "down",
         function: (keyUnpressed) => {
           if (keyUnpressed !== 40) this.moveDown(this.checkDownLimit());
@@ -69,11 +70,15 @@ class Player {
     this.actualMove = 0;
   }
 
-  drawPlayer() {
+  drawPlayer(frames) {
+    this.frames = frames;
+    const sprites = new Image();
+    sprites.src = "./images/sprite.png";
+
     const actualX = this.moves[this.actualDirection][this.actualMove].x;
     const actualY = this.moves[this.actualDirection][this.actualMove].y;
 
-    context.drawImage(
+    this.context.drawImage(
       sprites,
       actualX,
       actualY,
@@ -93,7 +98,7 @@ class Player {
   }
 
   checkPlayerMoves() {
-    if (frames % 8 === 0) {
+    if (this.frames % 8 === 0) {
       if (this.actualMove < this.moves[this.actualDirection].length - 1) {
         this.actualMove += 1;
       } else {
@@ -117,7 +122,7 @@ class Player {
 
     if (!colision && !houseColision) {
       this.posX = this.posX + this.speed;
-      this.checkPlayerMoves(frames);
+      this.checkPlayerMoves(this.frames);
     }
   }
 
@@ -136,7 +141,7 @@ class Player {
 
     if (!colision && !houseColision) {
       this.posX = this.posX - this.speed;
-      this.checkPlayerMoves(frames);
+      this.checkPlayerMoves(this.frames);
     }
   }
 
@@ -155,7 +160,7 @@ class Player {
 
     if (!colision && !houseColision) {
       this.posY = this.posY - this.speed;
-      this.checkPlayerMoves(frames);
+      this.checkPlayerMoves(this.frames);
     }
   }
 
@@ -174,7 +179,7 @@ class Player {
 
     if (!colision && !houseColision) {
       this.posY = this.posY + this.speed;
-      this.checkPlayerMoves(frames);
+      this.checkPlayerMoves(this.frames);
     }
   }
 
@@ -184,7 +189,7 @@ class Player {
   }
 
   checkDownLimit() {
-    if (this.posY >= settings.screen.height - this.height) return true;
+    if (this.posY >= this.settings.screen.height - this.height) return true;
     return false;
   }
 
@@ -194,14 +199,14 @@ class Player {
   }
 
   checkRightLimit() {
-    if (this.posX + this.width >= settings.screen.width) return true;
+    if (this.posX + this.width >= this.settings.screen.width) return true;
     return false;
   }
 
   checkHouseLimit(move) {
     let hit = false;
 
-    bigHouses.forEach((h) => {
+    this.bigHouses.forEach((h) => {
       if (
         this.posY + this.height <= h.y + h.height + 20 &&
         this.posY >= h.y + h.height - 150 &&

@@ -1,19 +1,22 @@
-class CoffeShop {
-  constructor(x, y) {
+export default class CoffeShop {
+  constructor(x, y, context, settings) {
     this.x = x;
     this.y = y;
     this.width = settings.coffeShop.width;
     this.height = settings.coffeShop.height;
     this.context = context;
+    this.settings = settings;
   }
 
   drawCoffeShop() {
-    context.drawImage(
+    const houses = new Image();
+    houses.src = "./images/houses.png";
+    this.context.drawImage(
       houses,
-      settings.coffeShop.originalX,
-      settings.coffeShop.originalY,
-      settings.coffeShop.originalWidth,
-      settings.coffeShop.orifinalHeight,
+      this.settings.coffeShop.originalX,
+      this.settings.coffeShop.originalY,
+      this.settings.coffeShop.originalWidth,
+      this.settings.coffeShop.orifinalHeight,
       this.x,
       this.y,
       this.width,

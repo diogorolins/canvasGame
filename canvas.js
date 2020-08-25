@@ -1,30 +1,24 @@
-canvas = document.getElementById("canvas");
+import Player from "./classes/Player.js";
+import Background from "./classes/Background.js";
+import BigHouse from "./classes/House.js";
+import CoffeShop from "./classes/CoffeShop.js";
+import { settings } from "./settings.js";
+
+const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
-const sprites = new Image();
-sprites.src = "./images/sprite.png";
-
-const backgroundImage = new Image();
-backgroundImage.src = "./images/background.png";
-
-const houses = new Image();
-houses.src = "./images/houses.png";
-
 let bigHouses = [];
+let bigHouse1 = new BigHouse(20, 100, context, settings);
+let bigHouse2 = new BigHouse(700, 100, context, settings);
+bigHouses.push(bigHouse1, bigHouse2);
 
-let player = new Player();
-let background = new Background();
-buildHoudses();
-let coffeShop = new CoffeShop(320, 120);
+let background = new Background(context, settings);
+
+let player = new Player(context, settings, bigHouses);
+let coffeShop = new CoffeShop(320, 120, context, settings);
 let keyPressed = "";
 let keyUnpressed = "";
 let frames = 0;
-
-function buildHoudses() {
-  let bigHouse1 = new BigHouse(20, 100);
-  let bigHouse2 = new BigHouse(700, 100);
-  bigHouses.push(bigHouse1, bigHouse2);
-}
 
 function init() {
   draw();
@@ -37,7 +31,7 @@ function draw() {
   background.drawBackground();
   coffeShop.drawCoffeShop();
   bigHouses.forEach((h) => h.drawHouse());
-  player.drawPlayer();
+  player.drawPlayer(frames);
 }
 
 function clearScreen() {

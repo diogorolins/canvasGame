@@ -1,10 +1,14 @@
-class Background {
-  constructor() {
+export default class Background {
+  constructor(context, settings) {
     this.context = context;
+    this.settings = settings;
   }
 
   drawBackground() {
-    context.drawImage(
+    const backgroundImage = new Image();
+    backgroundImage.src = "./images/background.png";
+
+    this.context.drawImage(
       backgroundImage,
       0,
       0,
@@ -12,8 +16,8 @@ class Background {
       515,
       0,
       0,
-      settings.screen.width,
-      settings.screen.height
+      this.settings.screen.width,
+      this.settings.screen.height
     );
   }
 }
