@@ -4,7 +4,7 @@
   "description": "Treinamento no Canvas para posicionar e movimentar elementos.",
   "main": "canvas.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --config ./webpack.config.js",
     "build": "webpack --config webpack.config.js"
   },
   "repository": {
@@ -19,7 +19,8 @@
   "homepage": "https://github.com/diogorolins/canvasGame#readme",
   "dependencies": {
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
     "html-webpack-plugin": "^4.3.0"
